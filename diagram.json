@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "author": "Mohamed El Amine El boudihi",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 179.4, "left": -179.6, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 172.8, "left": 196.84, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -9.3, "left": 234.6, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 6.4,
+      "left": -234.4,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -7.2,
+      "left": 155.4,
+      "attrs": { "volume": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -80.4,
+      "left": -217,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -90,
+      "left": -140.2,
+      "attrs": { "color": "orange" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -99.6,
+      "left": -53.8,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -44.05,
+      "left": -19.2,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -34.45,
+      "left": -105.6,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -24.85,
+      "left": -182.4,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot_bpm", "top": 380, "left": -150, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot_tension", "top": 380, "left": 0, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot_glucose", "top": 380, "left": 150, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "bb1:bn.25", "black", [ "h-9.45", "v49.3" ] ],
+    [ "bb1:bp.25", "esp:3V3", "red", [ "v-0.9", "h59.2", "v-163.2" ] ],
+    [ "dht1:VCC", "bb1:bp.24", "red", [ "v57.6", "h-76.8", "v192", "h-59.2" ] ],
+    [ "dht1:GND", "bb1:bn.24", "black", [ "v48", "h38.4", "v240", "h-203.2" ] ],
+    [ "dht1:SDA", "esp:15", "yellow", [ "v57.6", "h48.1", "v192" ] ],
+    [ "lcd1:SDA", "esp:21", "blue", [ "h-38.4", "v-201.4", "h604.8", "v393.6" ] ],
+    [ "lcd1:SCL", "esp:22", "blue", [ "h-28.8", "v-201.3", "h585.6", "v355.2" ] ],
+    [ "lcd1:VCC", "bb1:tp.3", "red", [ "h-9.6", "v163.3", "h94.4" ] ],
+    [ "lcd1:GND", "bb1:tn.2", "black", [ "h-19.2", "v182.4", "h94.4" ] ],
+    [ "bb1:tp.1", "bb1:bp.1", "red", [ "v0.3", "h-46.4", "v172.8" ] ],
+    [ "bb1:tn.1", "bb1:bn.1", "black", [ "v-0.1", "h-56", "v172.8" ] ],
+    [ "esp:4", "bz1:2", "purple", [ "h0" ] ],
+    [ "bz1:1", "bb1:tn.24", "black", [ "v67.2", "h-67.2" ] ],
+    [ "led3:A", "r1:1", "red", [ "v0" ] ],
+    [ "led2:A", "r2:1", "orange", [ "v0" ] ],
+    [ "led1:A", "r3:1", "green", [ "v9.6" ] ],
+    [ "esp:2", "r1:2", "red", [ "h67.2", "v-384" ] ],
+    [ "r2:2", "esp:19", "orange", [ "h402", "v297.6" ] ],
+    [ "r3:2", "esp:18", "green", [ "h469.2", "v297.6" ] ],
+    [
+      "led2:C",
+      "bb1:tn.5",
+      "black",
+      [ "v19.2", "h-9.2", "v-86.4", "h-153.6", "v278.4", "h180.8" ]
+    ],
+    [
+      "led3:C",
+      "bb1:tn.6",
+      "black",
+      [ "v19.2", "h-9.2", "v-86.4", "h-249.6", "v278.4", "h209.6" ]
+    ],
+    [
+      "led1:C",
+      "bb1:tn.4",
+      "black",
+      [ "v19.2", "h-9.2", "v-86.4", "h-67.2", "v278.4", "h161.6" ]
+    ],
+    [ "pot_bpm:VCC", "bb1:bp.8", "red", [] ],
+    [ "pot_bpm:GND", "bb1:bn.8", "black", [] ],
+    [ "pot_bpm:SIG", "esp:34", "green", [] ],
+    [ "pot_tension:VCC", "bb1:bp.14", "red", [] ],
+    [ "pot_tension:GND", "bb1:bn.14", "black", [] ],
+    [ "pot_tension:SIG", "esp:35", "blue", [] ],
+    [ "pot_glucose:VCC", "bb1:bp.20", "red", [] ],
+    [ "pot_glucose:GND", "bb1:bn.20", "black", [] ],
+    [ "pot_glucose:SIG", "esp:32", "yellow", [] ]
+  ],
+  "dependencies": {}
+}
